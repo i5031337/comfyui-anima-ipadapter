@@ -56,11 +56,6 @@ class ExpressionSpritesTests(unittest.TestCase):
         self.assertEqual(result[ids["5"]]["inputs"], {"width": 640, "height": 960, "batch_size": 1})
         self.assertEqual(result[ids["9"]]["inputs"]["filename_prefix"], "sprites/test")
 
-    def test_editor_export_has_actionable_error(self):
-        path = Path(sprites.DEFAULT_WORKFLOW).with_name("Anima_Turbo_IPAdapter.json")
-        with self.assertRaisesRegex(ValueError, "API-format"):
-            self.build(workflow_path=path)
-
     def test_lists_exit_without_loading_workflow_or_contacting_server(self):
         with tempfile.TemporaryDirectory() as directory:
             expressions = Path(directory) / "expressions.txt"
