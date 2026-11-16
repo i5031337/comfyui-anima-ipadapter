@@ -198,7 +198,7 @@ python generate_expression_sprites.py \
 | `--workflow` PATH | `./workflows/Expression_Sprites_API.json` | Load a ComfyUI API-format workflow; model choices come from this JSON. |
 | `--list-styles` | Off | List preset descriptions, aliases, and recommended strengths, then exit. |
 | `--list-expressions` | Off | List all expressions from `--expressions`, then exit. Can be combined with `--list-styles`; does not apply `--limit` or `--expression`. |
-| `--skip-existing` | Off | Skip generation when the destination PNG exists; file numbering is preserved. Checks filenames only, not whether settings match or the image is valid. |
+| `--skip-existing` | Off | Skip generation when the destination PNG exists. Checks filenames only, not whether settings match or the image is valid. |
 | `--character`, `-c` TEXT | Empty | Character description and franchise keywords prepended to the positive prompt. |
 | `--style`, `-s` TEXT | `90s` | Style preset, alias, or custom style prompt text (see below). |
 | `--expression`, `-e` NAME | Unset | Generate one expression; overrides `--expressions` and ignores `--limit`. |
@@ -235,7 +235,7 @@ Preset names and aliases are case-insensitive. Any other string becomes custom s
 
 The bundled expressions include tailored facial and body-language cues. Custom expression names are also accepted and receive generic expression and posture cues. The script adds a flat dark-grey background prompt; the default API template removes the background to produce transparency.
 
-List mode saves `sprite_01_admiration.png`, `sprite_02_amusement.png`, and so on in file order. Single-expression mode saves `sprite_amusement.png`. Reusing the same destination filenames overwrites earlier sprites unless `--skip-existing` is set. ComfyUI also saves the original generated files under `output/sprites/`.
+Both list and single-expression modes save each sprite as `<expression>.png`, for example `admiration.png` or `amusement.png`. Reusing the same destination filenames overwrites earlier sprites unless `--skip-existing` is set. ComfyUI also saves the original generated files under `output/sprites/`.
 
 For a remote server, required models must be installed on that server. Local reference images are uploaded through `/upload/image`; existing server input filenames can also be used. The script can download results through ComfyUI's `/view` endpoint when it cannot find them locally. Each expression has a fixed 180-second completion timeout.
 

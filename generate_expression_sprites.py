@@ -432,7 +432,7 @@ def main():
     saved_count = 0
     ref_image_name = None
     for i, expr in enumerate(expressions, 1):
-        dest_filename = f"sprite_{expr}.png" if args.expression else f"sprite_{i:02d}_{expr}.png"
+        dest_filename = f"{expr}.png"
         dest_path = os.path.join(args.output_dir, dest_filename)
         if args.skip_existing and os.path.isfile(dest_path):
             print(f"[{i}/{len(expressions)}] Skipping existing: {dest_filename}")

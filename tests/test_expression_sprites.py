@@ -144,12 +144,12 @@ class ExpressionSpritesTests(unittest.TestCase):
                 upload.assert_not_called()
             self.assertEqual(queue.call_args.args[1]["22"]["inputs"]["image"], "server_only/portrait.png")
 
-    def test_skip_existing_preserves_list_numbering(self):
+    def test_skip_existing_uses_expression_filenames(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             expressions = root / "expressions.txt"
             expressions.write_text("joy\nanger\n")
-            existing = root / "sprite_01_joy.png"
+            existing = root / "joy.png"
             existing.write_bytes(b"existing")
             source = root / "generated.png"
             source.write_bytes(b"new")
@@ -160,12 +160,12 @@ class ExpressionSpritesTests(unittest.TestCase):
             self.assertEqual(queue.call_count, 1)
             self.assertIn("anger", queue.call_args.args[1]["6"]["inputs"]["text"])
             self.assertEqual(existing.read_bytes(), b"existing")
-            self.assertEqual((root / "sprite_02_anger.png").read_bytes(), b"new")
+            self.assertEqual((root / "anger.png").read_bytes(), b"new")
             self.assertIn("Saved 1, skipped 1, failed to save 0", output)
 
     def test_skip_existing_single_expression_does_not_queue(self):
         with tempfile.TemporaryDirectory() as directory:
-            (Path(directory) / "sprite_joy.png").write_bytes(b"existing")
+            (Path(directory) / "joy.png").write_bytes(b"existing")
             with patch.object(sprites, "queue_prompt") as queue:
                 output = self.run_main("--expression", "joy", "--output-dir", directory,
                                        "--skip-existing", "--workflow", "missing.json",
@@ -176,7 +176,7 @@ class ExpressionSpritesTests(unittest.TestCase):
     def test_existing_single_expression_is_overwritten_by_default(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            destination = root / "sprite_joy.png"
+            destination = root / "joy.png"
             destination.write_bytes(b"old")
             source = root / "generated.png"
             source.write_bytes(b"new")
