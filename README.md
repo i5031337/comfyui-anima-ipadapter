@@ -4,6 +4,10 @@ Custom node extension for [ComfyUI](https://github.com/comfyanonymous/ComfyUI) p
 
 Enables reference-image-driven character consistency, expression sprite generation, and style steering via decoupled cross-attention injection into Anima's DiT blocks.
 
+## Attribution
+
+The SigLIP2 IP-Adapter node implementation is adapted from [LuciferTC9527/ComfyUI-Anima_IP-Adapter](https://github.com/LuciferTC9527/ComfyUI-Anima_IP-Adapter). The `ip_adapter-Character_Reference-10.safetensors` checkpoint is published by [LuciferTC on Hugging Face](https://huggingface.co/LuciferTC/Anima-IP-Adapter). This repository adds GGUF compatibility, modular organization, and expression sprite tooling.
+
 ---
 
 ## Features
