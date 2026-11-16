@@ -22,7 +22,7 @@ Clone this repository into your ComfyUI `custom_nodes` directory:
 
 ```bash
 cd ComfyUI/custom_nodes
-git clone git@github.com:i5031337/comfyui-anima-ipadapter.git
+git clone https://github.com/i5031337/comfyui-anima-ipadapter.git
 pip install -r comfyui-anima-ipadapter/requirements.txt
 ```
 
